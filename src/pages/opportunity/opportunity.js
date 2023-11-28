@@ -1,6 +1,10 @@
 import * as React from 'react';
-import {Box, Button, Modal} from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import OpportunityForm from "./opportunity-form";
+import OpportunityTable from './opportunityTable';
+import file from "../../assets/api2_demo.xlsx"
+import fileDownload from "react-file-download"
+import { saveAs } from 'file-saver';
 
 const style = {
   position: 'absolute',
@@ -19,12 +23,39 @@ const style = {
 
 export default function Opportunity() {
   const [open, setOpen] = React.useState(false);
+  const [showData, setShowData] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [formState, setFormState] = React.useState({
+    opportunityName: "",
+    jobTitle: "",
+    accountName: "",
+    contactName: "",
+    workLocation: "",
+    address: "",
+    experience: "",
+    salary: "",
+    pincode: "",
+    startDate: new Date(),
+    workHours: "",
+    phase: "",
+  });
+
+  const downloadFile = () => {
+    const filePath = file;
+    fetch(filePath)
+      .then((response) => response.blob())
+      .then((blob) => {
+        saveAs(blob, 'example.xlsx');
+      })
+      .catch((error) => console.error('Error downloading file:', error));
+  };
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleOpen} style={{ margin: "32px 0 32px 0" }}>Create Opportunity</Button>
+      <Button variant="contained" color="primary" onClick={() => {
+        handleOpen() && setShowData(false)
+      }} style={{ margin: "32px 0 32px 0" }}>Create Opportunity</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -32,9 +63,13 @@ export default function Opportunity() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <OpportunityForm onClose={handleClose} />
+          <OpportunityForm onClose={handleClose} formState={formState} setFormState={setFormState} setOpen={setOpen} setShowData={setShowData} />
         </Box>
       </Modal>
+      <Box>
+        <Button variant="outlined" color="info" onClick={downloadFile}>Download Records</Button>
+      </Box>
+      {!open && showData && formState.constructor === Object && <OpportunityTable formState={formState} />}
     </div>
   );
 }

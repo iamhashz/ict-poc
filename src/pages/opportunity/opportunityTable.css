@@ -1,0 +1,27 @@
+/* OpportunityTable.css */
+.opportunity-table-container {
+  overflow-x: auto;
+}
+
+table {
+  margin: 0 auto;
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+@media only screen and (max-width: 600px) {
+  th, td {
+    font-size: 14px;
+  }
+}

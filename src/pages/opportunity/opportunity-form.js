@@ -9,24 +9,19 @@ import {
   MenuItem,
 } from "@mui/material";
 
-const OpportunityForm = ({ onClose }) => {
-  const [opportunityName, setOpportunityName] = useState("");
-  const [jobTitle, setJobTitle] = useState("");
-  const [accountName, setAccountName] = useState("");
-  const [contactName, setContactName] = useState("");
-  const [workLocation, setWorkLocation] = useState("");
-  const [address, setAddress] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [workHours, setWorkHours] = useState("");
-  const [phase, setPhase] = useState("");
-
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
+const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowData }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevFormState) => ({
+      ...prevFormState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setOpen(false)
+    setShowData(true)
     // Handle form submission logic here
   };
 
@@ -34,26 +29,32 @@ const OpportunityForm = ({ onClose }) => {
     <form onSubmit={handleSubmit}>
       <TextField
         label="Opportunity Name"
-        value={opportunityName}
-        onChange={(e) => setOpportunityName(e.target.value)}
+        name="opportunityName"
+        value={formState.opportunityName}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
       />
       <br />
 
       <TextField
         label="Job Title"
-        value={jobTitle}
-        onChange={(e) => setJobTitle(e.target.value)}
+        name="jobTitle"
+        value={formState.jobTitle}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
       />
       <br />
 
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Account Name</InputLabel>
         <Select
+          required={true}
           label="Account Name"
-          value={accountName}
-          onChange={(e) => setAccountName(e.target.value)}
+          name="accountName"
+          value={formState.accountName}
+          onChange={handleChange}
         >
           {/* Populate account names from your data source */}
           <MenuItem value="gaurav@tftus.com">Gaurav</MenuItem>
@@ -66,9 +67,11 @@ const OpportunityForm = ({ onClose }) => {
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Contact Name</InputLabel>
         <Select
+          required={true}
           label="Contact Name"
-          value={contactName}
-          onChange={(e) => setContactName(e.target.value)}
+          name="contactName"
+          value={formState.contactName}
+          onChange={handleChange}
         >
           {/* Populate contact names from your data source */}
           <MenuItem value="gaurav@tftus.com">Gaurav</MenuItem>
@@ -80,33 +83,58 @@ const OpportunityForm = ({ onClose }) => {
 
       <TextField
         label="Work Location"
-        value={workLocation}
-        onChange={(e) => setWorkLocation(e.target.value)}
+        name="workLocation"
+        value={formState.workLocation}
+        onChange={handleChange}
+        sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
+      />
+      <br />
+      <TextField
+        label="Experience"
+        name="experience"
+        value={formState.experience}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
       />
       <br />
-
+      <TextField
+        label="Salary"
+        name="salary"
+        value={formState.salary}
+        onChange={handleChange}
+        sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
+      />
+      <br />
       <TextField
         label="Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
+        name="address"
+        value={formState.address}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
       />
       <br />
 
       <TextField
         label="Pincode"
-        value={pincode}
-        onChange={(e) => setPincode(e.target.value)}
+        name="pincode"
+        value={formState.pincode}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
+
       />
       <br />
 
       <TextField
         label="Start Date"
         type="date"
-        value={startDate.toISOString().split("T")[0]}
-        onChange={(e) => handleStartDateChange(new Date(e.target.value))}
+        name="startDate"
+        value={formState.startDate}
+        onChange={handleChange}
+        required={true}
         InputLabelProps={{
           shrink: true,
         }}
@@ -116,22 +144,25 @@ const OpportunityForm = ({ onClose }) => {
 
       <TextField
         label="Work Hours"
-        value={workHours}
-        onChange={(e) => setWorkHours(e.target.value)}
+        name="workHours"
+        value={formState.workHours}
+        onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
+        required={true}
+
       />
       <br />
 
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Phase</InputLabel>
-        <Select label="Phase" value={phase} onChange={(e) => setPhase(e.target.value)}>
+        <Select label="Phase" name="phase" value={formState.phase} required={true}
+          onChange={handleChange}>
           <MenuItem value="in-progress">In Progress</MenuItem>
           <MenuItem value="on-hold">On Hold</MenuItem>
           <MenuItem value="closed">Closed</MenuItem>
         </Select>
       </FormControl>
       <br />
-
       <Grid
         container
         spacing={2}
