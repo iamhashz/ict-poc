@@ -33,7 +33,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.opportunityName}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
         id="opportunityName"
       />
       <br />
@@ -45,7 +44,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.jobTitle}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
       />
       <br />
 
@@ -53,7 +51,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         <InputLabel>Account Name</InputLabel>
         <Select
           id="accountName"
-          required={true}
           placeholder="Account Name"
           name="accountName"
           value={formState.accountName}
@@ -71,7 +68,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         <InputLabel>Contact Name</InputLabel>
         <Select
           id="contactName"
-          required={true}
           placeholder="Contact Name"
           name="contactName"
           value={formState.contactName}
@@ -91,7 +87,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.workLocation}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
       />
       <br />
       <TextField
@@ -110,7 +105,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.salary}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
       />
       <br />
       <TextField
@@ -120,7 +114,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.address}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
       />
       <br />
 
@@ -131,7 +124,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.pincode}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
 
       />
       <br />
@@ -143,7 +135,6 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         name="startDate"
         value={formState.startDate}
         onChange={handleChange}
-        required={true}
         InputLabelProps={{
           shrink: true,
         }}
@@ -158,13 +149,12 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
         value={formState.workHours}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
-        required={true}
       />
       <br />
 
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Phase</InputLabel>
-        <Select id="phase" placeholder="Phase" name="phase" value={formState.phase} required={true}
+        <Select id="phase" placeholder="Phase" name="phase" value={formState.phase}
           onChange={handleChange}>
           <MenuItem value="in-progress">In Progress</MenuItem>
           <MenuItem value="on-hold">On Hold</MenuItem>
