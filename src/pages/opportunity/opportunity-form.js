@@ -28,17 +28,19 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
   return (
     <form onSubmit={handleSubmit}>
       <TextField
-        label="Opportunity Name"
+        placeholder="Opportunity Name"
         name="opportunityName"
         value={formState.opportunityName}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
         required={true}
+        id="opportunityName"
       />
       <br />
 
       <TextField
-        label="Job Title"
+        id="jobTitle"
+        placeholder="Job Title"
         name="jobTitle"
         value={formState.jobTitle}
         onChange={handleChange}
@@ -50,8 +52,9 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Account Name</InputLabel>
         <Select
+          id="accountName"
           required={true}
-          label="Account Name"
+          placeholder="Account Name"
           name="accountName"
           value={formState.accountName}
           onChange={handleChange}
@@ -67,13 +70,13 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Contact Name</InputLabel>
         <Select
+          id="contactName"
           required={true}
-          label="Contact Name"
+          placeholder="Contact Name"
           name="contactName"
           value={formState.contactName}
           onChange={handleChange}
         >
-          {/* Populate contact names from your data source */}
           <MenuItem value="gaurav@tftus.com">Gaurav</MenuItem>
           <MenuItem value="daniel@tftus.com">Daniel</MenuItem>
           <MenuItem value="jhon@tftus.com">Jhon</MenuItem>
@@ -82,7 +85,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <br />
 
       <TextField
-        label="Work Location"
+        id="workLocation"
+        placeholder="Work Location"
         name="workLocation"
         value={formState.workLocation}
         onChange={handleChange}
@@ -91,7 +95,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       />
       <br />
       <TextField
-        label="Experience"
+        id="address"
+        placeholder="Experience"
         name="experience"
         value={formState.experience}
         onChange={handleChange}
@@ -99,7 +104,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       />
       <br />
       <TextField
-        label="Salary"
+        id="experience"
+        placeholder="Salary"
         name="salary"
         value={formState.salary}
         onChange={handleChange}
@@ -108,7 +114,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       />
       <br />
       <TextField
-        label="Address"
+        id="salary"
+        placeholder="Address"
         name="address"
         value={formState.address}
         onChange={handleChange}
@@ -118,7 +125,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <br />
 
       <TextField
-        label="Pincode"
+        id="pincode"
+        placeholder="Pincode"
         name="pincode"
         value={formState.pincode}
         onChange={handleChange}
@@ -129,7 +137,8 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <br />
 
       <TextField
-        label="Start Date"
+        id="startDate"
+        placeholder="Start Date"
         type="date"
         name="startDate"
         value={formState.startDate}
@@ -143,19 +152,19 @@ const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowDat
       <br />
 
       <TextField
-        label="Work Hours"
+        id="workHours"
+        placeholder="Work Hours"
         name="workHours"
         value={formState.workHours}
         onChange={handleChange}
         sx={{ marginBottom: "16px", width: "100%" }}
         required={true}
-
       />
       <br />
 
       <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
         <InputLabel>Phase</InputLabel>
-        <Select label="Phase" name="phase" value={formState.phase} required={true}
+        <Select id="phase" placeholder="Phase" name="phase" value={formState.phase} required={true}
           onChange={handleChange}>
           <MenuItem value="in-progress">In Progress</MenuItem>
           <MenuItem value="on-hold">On Hold</MenuItem>

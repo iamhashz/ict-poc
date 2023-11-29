@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Box, Button, Modal } from '@mui/material';
 import OpportunityForm from "./opportunity-form";
 import OpportunityTable from './opportunityTable';
-import file from "../../assets/api2_demo.xlsx"
-import fileDownload from "react-file-download"
+import file from "../../assets/data.xlsx"
+import { format } from 'date-fns'
 import { saveAs } from 'file-saver';
 
 const style = {
@@ -36,7 +36,7 @@ export default function Opportunity() {
     experience: "",
     salary: "",
     pincode: "",
-    startDate: new Date(),
+    startDate: format(new Date(), "yyyy-MM-dd"),
     workHours: "",
     phase: "",
   });
@@ -46,7 +46,7 @@ export default function Opportunity() {
     fetch(filePath)
       .then((response) => response.blob())
       .then((blob) => {
-        saveAs(blob, 'example.xlsx');
+        saveAs(blob, 'data.xlsx');
       })
       .catch((error) => console.error('Error downloading file:', error));
   };
