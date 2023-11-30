@@ -36,7 +36,7 @@ export default function Opportunity() {
     experience: "",
     salary: "",
     pincode: "",
-    startDate: format(new Date(), "yyyy-MM-dd"),
+    startDate: "",
     workHours: "",
     phase: "",
   });
@@ -67,7 +67,7 @@ export default function Opportunity() {
         </Box>
       </Modal>
       <Box>
-        <Button variant="outlined" color="info" onClick={downloadFile}>Download Records</Button>
+        <Button id="download" variant="outlined" color="info" onClick={downloadFile}>Download Records</Button>
       </Box>
       {!open && showData && formState.constructor === Object && <OpportunityTable formState={formState} />}
     </div>

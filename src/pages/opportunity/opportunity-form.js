@@ -1,184 +1,142 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import React from "react";
+import "./opportunity-form.module.css";
 
-const OpportunityForm = ({ onClose, formState, setFormState, setOpen, setShowData }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prevFormState) => ({
-      ...prevFormState,
-      [name]: value,
-    }));
-  };
+const OpportunityForm = ({ onClose, setFormState, setOpen, setShowData }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setOpen(false)
-    setShowData(true)
-    // Handle form submission logic here
+    setFormValues()
+    setOpen(false);
+    setShowData(true);
   };
 
+  function setFormValues() {
+    var form = document.getElementById("submit-form");
+    var inputs = form.elements;
+    var values = {};
+    for (var i = 0; i < inputs.length; i++) {
+      var input = inputs[i];
+      if (input.tagName.toLowerCase() === "input" || input.tagName.toLowerCase() === "select") {
+        values[input.name] = input.value;
+      }
+    }
+    setFormState(values)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        placeholder="Opportunity Name"
-        name="opportunityName"
-        value={formState.opportunityName}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-        id="opportunityName"
-      />
-      <br />
-
-      <TextField
-        id="jobTitle"
-        placeholder="Job Title"
-        name="jobTitle"
-        value={formState.jobTitle}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-
-      <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
-        <InputLabel>Account Name</InputLabel>
-        <Select
+    <form id="submit-form" onSubmit={handleSubmit}>
+      <label>
+        Opportunity Name:
+      </label>
+        <input
+          id="opportunityName"
+          type="text"
+          name="opportunityName"
+        />
+      <label>
+        Job Title:
+        <input
+          id="jobTitle"
+          type="text"
+          name="jobTitle"
+        />
+      </label>
+      <label>
+        Account Name:
+        <select
           id="accountName"
-          placeholder="Account Name"
           name="accountName"
-          value={formState.accountName}
-          onChange={handleChange}
         >
-          {/* Populate account names from your data source */}
-          <MenuItem value="gaurav@tftus.com">Gaurav</MenuItem>
-          <MenuItem value="daniel@tftus.com">Daniel</MenuItem>
-          <MenuItem value="jhon@tftus.com">Jhon</MenuItem>
-        </Select>
-      </FormControl>
-      <br />
-
-      <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
-        <InputLabel>Contact Name</InputLabel>
-        <Select
+          <option value="gaurav@tftus.com">Gaurav</option>
+          <option value="daniel@tftus.com">Daniel</option>
+          <option value="jhon@tftus.com">Jhon</option>
+        </select>
+      </label>
+      <label>
+        Contact Name:
+        <select
           id="contactName"
-          placeholder="Contact Name"
           name="contactName"
-          value={formState.contactName}
-          onChange={handleChange}
         >
-          <MenuItem value="gaurav@tftus.com">Gaurav</MenuItem>
-          <MenuItem value="daniel@tftus.com">Daniel</MenuItem>
-          <MenuItem value="jhon@tftus.com">Jhon</MenuItem>
-        </Select>
-      </FormControl>
-      <br />
+          <option value="gaurav@tftus.com">Gaurav</option>
+          <option value="daniel@tftus.com">Daniel</option>
+          <option value="jhon@tftus.com">Jhon</option>
+        </select>
+      </label>
+      <label>
+        Work Location:
+        <input
+          id="workLocation"
+          type="text"
+          name="workLocation"
+        />
+      </label>
+      <label>
+        Experience:
+        <input
+          id="experience"
+          type="text"
+          name="experience"
+        />
+      </label>
+      <label>
+        Salary:
+        <input
+          id="salary"
+          type="text"
+          name="salary"
+        />
+      </label>
+      <label>
+        Address:
+        <input
+          id="address"
+          type="text"
+          name="address"
+        />
+      </label>
+      <label>
+        Pincode:
+        <input
+          id="pincode"
+          type="text"
+          name="pincode"
+        />
+      </label>
+      <label>
+        Start Date:
+        <input
+          id="startDate"
+          type="date"
+          name="startDate"
+        />
+      </label>
+      <label>
+        Work Hours:
+        <input
+          id="workHours"
+          type="text"
+          name="workHours"
+        />
+      </label>
+      <label>
+        Phase:
+        <select
+          id="phase"
+          name="phase"
+        >
+          <option value="in-progress">In Progress</option>
+          <option value="on-hold">On Hold</option>
+          <option value="closed">Closed</option>
+        </select>
+      </label>
 
-      <TextField
-        id="workLocation"
-        placeholder="Work Location"
-        name="workLocation"
-        value={formState.workLocation}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-      <TextField
-        id="address"
-        placeholder="Experience"
-        name="experience"
-        value={formState.experience}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-      <TextField
-        id="experience"
-        placeholder="Salary"
-        name="salary"
-        value={formState.salary}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-      <TextField
-        id="salary"
-        placeholder="Address"
-        name="address"
-        value={formState.address}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-
-      <TextField
-        id="pincode"
-        placeholder="Pincode"
-        name="pincode"
-        value={formState.pincode}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-
-      />
-      <br />
-
-      <TextField
-        id="startDate"
-        placeholder="Start Date"
-        type="date"
-        name="startDate"
-        value={formState.startDate}
-        onChange={handleChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-
-      <TextField
-        id="workHours"
-        placeholder="Work Hours"
-        name="workHours"
-        value={formState.workHours}
-        onChange={handleChange}
-        sx={{ marginBottom: "16px", width: "100%" }}
-      />
-      <br />
-
-      <FormControl sx={{ marginBottom: "16px", width: "100%" }}>
-        <InputLabel>Phase</InputLabel>
-        <Select id="phase" placeholder="Phase" name="phase" value={formState.phase}
-          onChange={handleChange}>
-          <MenuItem value="in-progress">In Progress</MenuItem>
-          <MenuItem value="on-hold">On Hold</MenuItem>
-          <MenuItem value="closed">Closed</MenuItem>
-        </Select>
-      </FormControl>
-      <br />
-      <Grid
-        container
-        spacing={2}
-        justifyContent="space-around"
-        style={{ marginBottom: "16px", width: "100%" }}
-      >
-        <Grid item xs={6}>
-          <Button variant="outlined" onClick={onClose} fullWidth>
-            Cancel
-          </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button type="submit" variant="contained" fullWidth>
-            Save
-          </Button>
-        </Grid>
-      </Grid>
+      <div style={{ display: "flex", justifyContent:"space-between", marginBottom: "16px", width: "100%" }}>
+        <button type="button" onClick={onClose}>
+          Cancel
+        </button>
+        <button type="submit" className="save" id="submit">Save</button>
+      </div>
     </form>
   );
 };
